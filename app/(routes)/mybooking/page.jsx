@@ -11,7 +11,7 @@ const page = () => {
   const [bookingHistory, setBookingHistory] = useState([]);
 
   const getUserBookingHistory = ()=>{
-    GlobalApi.getUserBookingHistory(user.user.email).then(resp=>{console.log(resp),setBookingHistory(resp.bookings)});
+    GlobalApi.getUserBookingHistory(user?.user?.email).then(resp=>{console.log(resp),setBookingHistory(resp.bookings)});
   }
 
   useEffect(()=>{
