@@ -1,5 +1,9 @@
+import { AuthProvider } from '@descope/nextjs-sdk';
 import localFont from "next/font/local";
 import "./globals.css";
+import Header from "./_components/Header";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from 'sonner';
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -19,12 +23,25 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <AuthProvider projectId="P2pCC4AfcK3HWE7p2MkEKlVwgjYl">
+    <html lang="en">  
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="mx-6 md:mx-16">
+            <Header />
+            <Toaster />
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
+    </AuthProvider>
   );
 }
